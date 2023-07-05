@@ -10,12 +10,10 @@
 
 class Solution:
     def isValidSudoku(self, board: list[list[str]]) -> bool:
-        for indx, row in board:
-            
-          if len(row) != len(set(row)):
-              return False
-          if len(row) != len(set( [board[x[indx]] for x in range(len(row)) ])):
-              return False
-        return True  
+        res = []
+        for i, row in enumerate(board):
+            for j, x in enumerate(row):
+                if x != '.':
+                    res += [(i, x), (x, j), (i // 3, j // 3, x)]
+        return len(res) == len(set(res))
 
-print([i for i in ["","0","2"] if i != ""])
