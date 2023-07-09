@@ -1,5 +1,18 @@
 
-stack = ["2","34","*"]
-index = 2
 
-print ( eval( ''.join([stack[index-2] , stack[index] , stack [index-1]])))
+class Solution:
+    def evalRPN(self, tokens: list[str]) -> int:
+        
+        stack = []
+        for  token in tokens:
+            
+            if token in "+-*/" :
+                val=eval(stack[-2]+token+stack[-1])
+                stack.pop()
+                stack.pop()
+                stack.append(str(int(val)))
+            else:
+                stack.append(token)
+                
+            
+        return int(stack[0])
